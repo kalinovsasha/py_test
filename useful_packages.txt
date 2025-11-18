@@ -1,0 +1,86 @@
+nornir - для парралельного выполнения
+
+Python библиотеки для автоматизации, сетей и DevOps
+
+Библиотека	Категория	Назначение
+subprocess	Автоматизация	Запуск внешних команд и процессов (фундамент)
+os / sys	Автоматизация	Взаимодействие с ОС: переменные окружения, аргументы, файловая система
+shutil	Автоматизация	Высокоуровневые файловые операции: копирование, удаление, архивация
+pathlib	Автоматизация	Современный объектно-ориентированный способ работы с путями
+fabric / invoke	Автоматизация	Выполнение команд на удаленных серверах по SSH
+paramiko	Автоматизация	Pure-Python реализация SSHv2 (основа для многих инструментов)
+psutil	Автоматизация	Информация о системных процессах и утилизации (CPU, память, диски, сеть)
+requests	Сети	"HTTP для людей" - де-факто стандарт для HTTP-запросов
+urllib3	Сети	Мощная низкоуровневая HTTP-библиотека (основа requests)
+aiohttp	Сети	Асинхронные HTTP-запросы для высокопроизводительных приложений
+socket	Сети	Низкоуровневое сетевое программирование
+netmiko	Сети	Автоматизация сетевого оборудования (Cisco, Juniper и др.)
+napalm	Сети	Унифицированный API для сетевого оборудования разных вендоров
+nornir	Сети	Фреймворк для автоматизации сетей на Python (альтернатива Ansible)
+pyyaml	DevOps	Парсинг и генерация YAML файлов (Kubernetes, Ansible, Docker Compose)
+jinja2	DevOps	Шаблонизация конфигурационных файлов (генерация nginx, configmaps)
+boto3	DevOps	AWS SDK для Python - управление всеми сервисами AWS
+docker	DevOps	Python клиент для Docker Engine API
+kubernetes	DevOps	Официальная Python-библиотека для Kubernetes API
+ansible	DevOps	Фреймворк для автоматизации (написан на Python, можно расширять)
+json	Данные	Стандартная библиотека для работы с JSON
+csv	Данные	Стандартная библиотека для чтения/записи CSV файлов
+openpyxl	Данные	Работа с Excel файлами (.xlsx)
+pandas	Данные	Анализ и обработка табличных данных (для сложных скриптов анализа)
+click / argparse	Утилиты	Создание CLI-интерфейсов для скриптов
+logging	Утилиты	Стандартная библиотека для настройки логирования
+python-dotenv	Утилиты	Загрузка переменных окружения из .env файлов
+tenacity	Утилиты	Паттерн Retry для надежных запросов
+cerberus / pydantic	Утилиты	Валидация конфигураций и данных
+
+
+1. asyncio - Базовая библиотека для асинхронного программирования
+2. aiohttp - Асинхронные HTTP-клиент и сервер
+3. asyncpg - Асинхронный драйвер PostgreSQL
+4. aioredis - Асинхронный клиент Redis
+5. FastAPI - Современный асинхронный фреймворк для API
+6. uvicorn - Асинхронный ASGI-сервер
+7. websockets - Библиотека для работы с WebSocket
+8. aiofiles - Асинхронная работа с файлами
+9. aiomysql - Асинхронный драйвер MySQL
+10. aiobotocore - Асинхронный AWS SDK
+11. httpx - Асинхронный HTTP-клиент
+12. sqlalchemy[async] - Асинхронная версия SQLAlchemy ORM
+13. tortoise-orm - Нативная асинхронная ORM
+14. celery[async] - Асинхронная очередь задач
+15. dramatiq[async] - Альтернатива Celery с async поддержкой
+16. aiokafka - Асинхронный клиент Apache Kafka
+17. aio-libs - Коллекция асинхронных библиотек
+18. sanic - Асинхронный веб-фреймворк
+19. quart - Асинхронная версия Flask
+20. starlette - Минималистичный ASGI-фреймворк
+21. aiojobs - Планировщик задач для asyncio
+22. aiocache - Асинхронная система кеширования
+23. aiodns - Асинхронный DNS-резолвер
+24. aioelasticsearch - Асинхронный клиент Elasticsearch
+25. aiogram - Асинхронный фреймворк для Telegram Bot API
+26. aioprocessing - Асинхронные процессы
+27. aiomongo - Асинхронный драйвер MongoDB
+28. aiozipkin - Асинхронный клиент Zipkin
+29. aiocron - Асинхронный крон
+30. aiohttp-session - Сессии для aiohttp
+31. aiohttp-jinja2 - Jinja2 шаблоны для aiohttp
+32. aiohttp-security - Аутентификация для aiohttp
+33. async-timeout - Таймауты для asyncio
+34. async-generator - Асинхронные генераторы
+35. anyio - Универсальная абстракция asyncio
+36. trio - Альтернативная async библиотека
+37. curio - Другая async библиотека
+38. asks - Асинхронные HTTP-запросы
+39. treq - Асинхронные HTTP-запросы на Twisted
+40. channels - WebSocket поддержка для Django
+41. daphne - ASGI-сервер для Django Channels
+42. hypercorn - ASGI-сервер с HTTP/2
+43. mangum - ASGI адаптер для AWS Lambda
+44. blacksheep - Асинхронный веб-фреймворк
+45. litestar - Высокопроизводительный async фреймворк
+46. strawberry - Асинхронный GraphQL
+47. ariadne - GraphQL для ASGI
+48. asyncpgsa - SQLAlchemy для asyncpg
+49. gino - Асинхронная ORM на основе SQLAlchemy
+50. ormar - Асинхронная мини-ORM
