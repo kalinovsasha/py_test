@@ -1,0 +1,87 @@
+# Шпаргалка: requests vs aiohttp
+
+## Базовые методы
+| Действие               | requests                          | aiohttp                            |
+|------------------------|-----------------------------------|------------------------------------|
+| GET запрос             | requests.get(url)                 | async with session.get(url)        |
+| POST запрос            | requests.post(url, data)          | async with session.post(url, data) |
+| PUT запрос             | requests.put(url, json)           | async with session.put(url, json)  |
+| DELETE запрос          | requests.delete(url)              | async with session.delete(url)     |
+| Создание сессии        | session = requests.Session()      | session = aiohttp.ClientSession()  |
+| Закрытие сессии        | session.close()                   | await session.close()              |
+
+## Параметры запроса
+| Параметр               | requests                          | aiohttp                            |
+|------------------------|-----------------------------------|------------------------------------|
+| URL параметры          | params={'key': 'value'}           | params={'key': 'value'}            |
+| Заголовки              | headers={'Header': 'value'}       | headers={'Header': 'value'}        |
+| JSON данные            | json=data                         | json=data                          |
+| Form данные            | data=form_data                    | data=form_data                     |
+| Куки                   | cookies=cookies_dict              | cookies=cookies_dict               |
+| Таймаут                | timeout=5                         | timeout=5                          |
+| Прокси                 | proxies=proxies_dict              | proxy='http://proxy.com'           |
+| SSL проверка           | verify=False                      | ssl=False                          |
+
+## Работа с ответом
+| Действие               | requests                          | aiohttp                            |
+|------------------------|-----------------------------------|------------------------------------|
+| Статус код             | response.status_code              | response.status                    |
+| Текст ответа           | response.text                     | await response.text()              |
+| Бинарные данные        | response.content                  | await response.read()              |
+| JSON ответ             | response.json()                   | await response.json()              |
+| Заголовки              | response.headers                  | response.headers                   |
+| URL                    | response.url                      | response.url                       |
+| Проверка успешности    | response.ok                       | response.status == 200             |
+| Вызов ошибки           | response.raise_for_status()       | if response.status != 200:         |
+
+## Контекстные менеджеры
+| Назначение             | requests                          | aiohttp                            |
+|------------------------|-----------------------------------|------------------------------------|
+| Сессия                 | with requests.Session() as session| async with aiohttp.ClientSession() as session |
+| Запрос в сессии        | session.get(url)                  | async with session.get(url) as response |
+
+## Обработка ошибок
+| Ошибка                 | requests                          | aiohttp                            |
+|------------------------|-----------------------------------|------------------------------------|
+| HTTP ошибки            | requests.HTTPError                | aiohttp.ClientResponseError        |
+| Ошибка подключения     | requests.ConnectionError          | aiohttp.ClientConnectorError       |
+| Таймаут                | requests.Timeout                  | asyncio.TimeoutError               |
+
+## Примеры использования
+
+### Скачивание файла
+# requests
+response = requests.get('https://example.com/image.jpg')
+with open('image.jpg', 'wb') as f:
+    f.write(response.content)
+
+# aiohttp
+async with aiohttp.ClientSession() as session:
+    async with session.get('https://example.com/image.jpg') as response:
+        image_data = await response.read()
+        with open('image.jpg', 'wb') as f:
+            f.write(image_data)
+
+### Работа с сессией (Zabbix)
+# requests
+session = requests.Session()
+login_data = {'name': 'user', 'password': 'pass'}
+session.post('http://zabbix/login', data=login_data)
+response = session.get('http://zabbix/graph')
+
+# aiohttp
+async with aiohttp.ClientSession() as session:
+    login_data = {'name': 'user', 'password': 'pass'}
+    async with session.post('http://zabbix/login', data=login_data):
+        pass
+    async with session.get('http://zabbix/graph') as response:
+        image_data = await response.read()
+
+## Ключевые различия
+| Аспект                 | requests                          | aiohttp                            |
+|------------------------|-----------------------------------|------------------------------------|
+| Тип                    | Синхронный                        | Асинхронный                        |
+| Производительность     | Блокирующий                       | Неблокирующий                      |
+| Сложность              | Проще                             | Сложнее                            |
+| Чтение данных          | response.text                     | await response.text()              |
+| Подходит для           | Простые скрипты                   | Боты, веб-серверы                  |
