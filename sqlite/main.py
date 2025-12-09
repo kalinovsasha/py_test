@@ -5,12 +5,7 @@ import sqlite3
 
 
 def main():
-    users = []
-    with sqlite3.connect('./db/my_database.db') as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM users")
-        users = cursor.fetchall()
-    print(users)
+    print(get_user(7640422432))
 
 
 def init_data():
@@ -41,13 +36,12 @@ def add_user(id: int, name: str):
         cursor.execute(
             "INSERT INTO users (tg_id, name) VALUES (?, ?)", (id, name))
 
+def get_user(tg_id:int):
+    with sqlite3.connect('./db/my_database.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE tg_id=?",(tg_id,))
+        user = cursor.fetchone()
+    return user
 
 if __name__ == "__main__":
     main()
-
-
-"""
-with sqlite3.connect('test.db') as conn:
-    cursor = conn.cursor()
-    cursor.execute("INSERT ...")
-    """
