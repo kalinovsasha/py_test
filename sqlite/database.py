@@ -35,14 +35,21 @@ class Users_base:
             cursor.execute("SELECT * FROM users where tg_id=?", (tg_id,))
             return cursor.fetchone()
 
-    def update_tguser(self, tg_id: int | str, name: str, access_level: int):
-        pass
+    def update_tguser(self, tg_id: int | str, name: str, access_level: int, description: str | None):
+        with sqlite3.connect(self.db_path) as con:
+            cursor = con.cursor()
+            cursor.execute(
+                "UPDATE users SET name = ?, access_level = ?, description = ? WHERE tg_id = ?", (name, access_level, description, tg_id))
 
     def delete_tguser(self, tg_id: int | str):
-        pass
+        with sqlite3.connect(self.db_path) as con:
+            cursor = con.cursor()
+            cursor.execute("DELETE FROM users WHERE tg_id=?", (tg_id,))
 
     def delete_iduser(self, id: int | str):
-        pass
+        with sqlite3.connect(self.db_path) as con:
+            cursor = con.cursor()
+            cursor.execute("DELETE FROM users WHERE id=?", (id,))
 
     def create_base(self):
         with sqlite3.connect(self.db_path) as connection:
@@ -60,5 +67,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 base = Users_base("./my_database.db")
 # base.create_tguser(22,"sasha",3,"hello")
+# base.delete_iduser(2)
+# base.delete_tguser(22)
+base.update_tguser(22, "Sasha", 3, "")
 print(base.read_users())
 print(base.read_user(22))
